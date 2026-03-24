@@ -1,0 +1,58 @@
+QTT-SN (Sensör Ağları için MQTT), yaygın olarak kullanılan bir uygulamanın uzantısıdır. MQTT protokolü Sensör ağları için özel olarak tasarlanmıştır. Kaynak kısıtlı cihazların benzersiz gereksinimlerini karşılayarak çeşitli IoT uygulamalarında önemli bir oyuncu haline gelmektedir.
+-----------------------------------
+1) İletişim modeli (en temel fark)
+Özellik	MQTT-SN	CoAP
+Model	Publish / Subscribe	Request / Response (REST)
+Mantık	Broker üzerinden mesaj yayını	Web servisi gibi istek-cevap
+Veri akışı	Olay tabanlı	İstek tabanlı
+Kullanım tipi	Sensör veri yayını	Sensöre komut gönderme
+
+Yorum:
+
+MQTT-SN = sensör veri gönderir
+
+CoAP = sensöre soru sorarsın
+--------------------------------------------
+2) Ağ mimarisi
+Özellik	MQTT-SN	CoAP
+Merkezi sunucu	Broker zorunlu	Yok
+Doğrudan node-node	Hayır	Evet
+Ölçeklenebilirlik	Çok yüksek	Orta
+Çok sayıda sensör	Çok uygun	Daha sınırlı
+
+Yorum:
+MQTT-SN büyük sensör ağları için tasarlanmıştır
+---------------------------------
+3) Paket yapısı ve bant genişliği
+Özellik	MQTT-SN	CoAP
+Header boyutu	Çok küçük	Küçük
+Mesaj yükü	En düşük	Düşük
+Ağ trafiği	Daha az	Daha fazla
+Enerji tüketimi	Daha az	Daha fazla
+
+Sonuç:
+👉 Enerji verimliliğinde MQTT-SN genelde daha iyidir.
+----------------------------------------------------------
+4) Güvenilirlik ve QoS
+Özellik	MQTT-SN	CoAP
+QoS seviyeleri	Var (0,1,2)	Confirmable mesaj
+Mesaj garantisi	Yüksek	Orta
+Tekrar iletim	Broker yönetir	Client yönetir
+
+Sonuç:
+👉 Güvenilir veri iletimi için MQTT-SN daha güçlü
+--------------------------------------------------
+5) Gecikme
+Durum	Daha hızlı protokol
+Sensör sürekli veri yayınlıyor	MQTT-SN
+Sensöre tek seferlik istek	CoAP
+-----------------------------------------------
+6) IoT kullanım senaryosu
+Senaryo	En uygun protokol
+Sıcaklık sensörü sürekli veri	MQTT-SN
+Lambayı aç/kapat komutu	        CoAP
+Büyük sensör ağı	        MQTT-SN
+IoT REST API	                CoAP
+-----------------------------
+
+HTTP, ağa bağlı cihazlar arasında bilgi aktarmak için tasarlanmış bir uygulama katmanı protokolüdür.ve ağ protokol yığınının diğer katmanlarının üzerinde çalışır. HTTP üzerinden tipik bir akış, bir istemci makinesinin bir sunucuya istekte bulunmasını ve sunucunun da bir yanıt mesajı göndermesini içerir.

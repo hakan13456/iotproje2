@@ -1,0 +1,39 @@
+iotlab-experiment submit -n riot_a8 -d 60 -l 4,archi=a8:at86rf231+site=strasbourg
+
+
+"id": 433089
+
+root yetkisi için:
+
+iotlab_reset
+
+
+ssh donmez@saclay.iot-lab.info
+iotlab_flash ~/A8/gnrc_border_router.elf zorla
+ iotlab-experiment submit -n riot_a8 -d 60 -l 4,archi=a8:at86rf231+site=saclay
+  "id": 433620
+
+ssh root@node-a8-101
+
+root@node-a8-101:~# ip -6 -o addr show eth0
+2: eth0    inet6 2001:660:3207:400::65/64 scope global \       valid_lft forever preferred_lft forever
+2: eth0    inet6 fe80::fadc:7aff:fe01:9910/64 scope link \       valid_lft forever preferred_lft forever
+iotlab-ssh flash-m3 examples/emcute_mqttsn/bin/iotlab-a8-m3/emcute_mqttsn.elf -l saclay,a8,103
+
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+make DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_networking clean all
+
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/networking/gnrc/border_router clean all
+ make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+make DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_networking clean all
+ ssh root@node-a8-14
+ 
+ 
+ iotlab-experiment submit -n riot_a8 -d 60 -l 10,archi=a8:at86rf231+site=saclay
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+ make DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_networking clean all
+
+
+
+
+

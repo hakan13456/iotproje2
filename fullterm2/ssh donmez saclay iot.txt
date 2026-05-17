@@ -1,0 +1,44 @@
+ssh donmez@saclay.iot-lab.info
+iotlab-auth -u donmez
+iotlab-experiment submit -n riot_a8 -d 120 -l 5,archi=a8:at86rf231+site=saclay
+iotlab-experiment wait
+iotlab-ssh --verbose wait-for-boot
+97-100-101 102 103 104 DEFAULT_CHANNEL=26
+source /opt/riot.source
+make ETHOS_BAUDRATE=500000  BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+border INET6_PREFIX=2001:0660:3207:461
+ ./start_network.sh /dev/ttyA8_M3 tap0 2001:0660:3207:461::/64 500000
+ ssh root@node-a8-101
+ vim config.conf
+ 2: eth0    inet6 2001:660:3207:400::66/64 scope global \ 
+ 2001:0660:3207:435
+ 2001:660:3207:400::35
+ ip -6 -o addr show eth0
+./start_network.sh /dev/ttyA8_M3 tap0 2001:660:3207:401::/64 500000
+//////////// 2.ci  2001:660:3207:400::66/64
+ 97-102-103
+ con 2001:660:3207:400::66 1885
+ con 2001:660:3207:400::66/64 1885
+ 2001:660:3207:400::66/64
+ make ETHOS_BAUDRATE=500000  BOARD=iotlab-a8-m3 -C examples/emcute_mqttsn clean all
+ 2001:660:3207:400::66/64
+ con  2001:660:3207:400::68 1885
+ ip -6 -o addr show eth0
+  2001:660:3207:400::68/64 2. 
+make BOARD=iotlab-a8-m3 -C examples/emcute_mqttsn
+flash_a8_m3 A8/emcute_mqttsn.elf
+miniterm.py /dev/ttyA8_M3 500000 -e
+source /opt/riot.source
+ cd ~/A8/riot/RIOT
+ make BOARD=iotlab-a8-m3 -C examples/emcute_mqttsn
+ kill ps aux | grep miniterm
+ kill -9 [PID_NUMARASI]2001:660:3207:400::68
+  mosquitto_pub -h 2001:660:3207:400::68  -p 1886 -t test/riot -m iotlab
+  pub test/riot "selam dunya"
+ 1 2001:660:3207:400::69/64 
+  
+  2 2001:660:3207:400::6f/64
+  2001:660:3207:400::70/64
+  con 2001:660:3207:400::6b 1885iotlab-ssh flash-m3 examples/emcute_mqttsn/bin/iotlab-a8-m3/emcute_mqttsn.elf -l saclay,a8,112
+  2 2001:660:3207:46b/64
+  2001:660:3207:400::69/64 

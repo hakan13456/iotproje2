@@ -1,0 +1,36 @@
+ssh donmez@saclay.iot-lab.info
+iotlab-auth -u donmez
+fit iot lab
+2001:0660:3207:464
+2001:660:3207:400::65/64 1
+ inet6 2001:660:3207:400::66/64 2
+438184
+Hakan123456_
+cd RIOT/examples/networking/gnrc/border_router make BOARD=iotlab-m3
+ iotlab-experiment submit -n riot_a8 -d 60 -l 6,archi=a8:at86rf231+site=saclay
+ INET6_PREFIX=2001:0660:3207:465
+ INET6_ADDR=2001:0660:3207:0400::65/64
+ root@node-a8-101:~# flash_a8_m3 A8/gnrc_border_router.elf
+cd ~A8/riot/RIOT/dist/tools/uhcpd 
+ssh root@node-a8-100
+make clean all
+cd ../ethos
+make clean all
+printenv
+iotlab_reset
+2001:0660:3207:464
+./start_network.sh /dev/ttyA8_M3 tap0 2001:0660:3207:465::/64 500000
+vim config.conf
+ip -6 -o addr show eth0
+2001:660:3207:400::65/64 scope global
+inet6 2001:660:3207:400::66/64   üstteki
+3. terminalde 
+source /opt/riot.source
+cd ~/A8/riot/RIOT
+ make BOARD=iotlab-a8-m3 -C examples/emcute_mqttsn
+ flash_a8_m3 A8/emcute_mqttsn.elf
+ miniterm.py /dev/ttyA8_M3 500000 -e
+ con 2001:660:3207:400::66 1885
+ ctrl t ctrrl e
+ sub test1/riot
+

@@ -1,0 +1,84 @@
+ssh donmez@saclay.iot-lab.info
+ssh root@node-a8-100
+iotlab_reset
+iotlab-auth -u donmez
+ssh donmez@saclay.iot-lab.info
+INET6_ADDR=2001:0660:3207:0400::65/64
+ iotlab-experiment submit -n riot_a8 -d 100 -l 5,archi=a8:at86rf231+site=saclay
+": 434060
+rm -rf RIOT
+bINET6_ADDR=2001:0660:3207:0400::64/64
+order 
+2: eth0    inet6 con 2001:0660:3207:400::65 1885        /64 scope global \       valid_lft forever preferred_lft forever
+2: eth0    inet6 fe80::fadc:7aff:fe01:9910/64 scope link \       valid_lft forever preferred_lft forever
+
+
+
+con 2001:0660:3207:0400::65
+
+2: eth0    inet6 2001:660:3207:400::65/64 scope global \       valid_lft forever preferred_lft forever
+2: eth0    inet6 fe80::fadc:7aff:fe01:9910/64 scope link \       valid_lft forever preferred_lft forever
+
+
+
+
+
+
+
+
+
+
+
+
+
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+cp examples/gnrc_border_router/bin/iotlab-a8-m3/gnrc_border_router.elf ~/A8/.
+
+
+make DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_networking clean all
+
+
+
+iotlab-ssh flash examples/emcute_mqttsn/bin/iotlab-a8-m3/emcute_mqttsn.elf -l saclay,a8,103
+
+miniterm.py /dev/ttyA8_M3 500000 -e
+
+
+
+
+
+
+iotlab_flash ~/A8/gnrc_border_router.elf zorla
+
+iotlab-experiment submit -n riot_a8 -d 90 -l 6,archi=a8:at86rf231+site=saclay
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/networking/gnrc/border_router  clean all
+cd ~/A8/riot/RIOT
+
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/networking/mqtt/gnrc// 
+
+A8/riot/RIOT/examples/networking/gnrc/border_router
+
+
+donmez@saclay:~$ ssh root@node-a8-100
+
+
+iotlab-ssh flash-m3 examples/emcute_mqttsn/bin/iotlab-a8-m3/emcute_mqttsn.elf -l saclay,a8,104
+ping -6 -o  2001:660:3207:400::/64 show eth0
+root@node-a8-14:~# ip -6 -o addr show eth0
+2: eth0    inet6 2001:660:3207:400::e/64 scope global \       valid_lft forever preferred_lft forever
+2: eth0    inet6 fe80::fadc:7aff:fe01:973e/64 scope link \       valid_lft forever preferred_lft forever
+con 2001:660:3207:400::e 1885
+scp ~/RIOT/examples/networking/gnrc/border_router/bin/iotlab-a8-m3/gnrc_border_router.elf donmez@saclay.iot-lab.info:~/
+
+scp ~/RIOT/examples/networking/mqtt/emcute_mqttsn/bin/iotlab-a8-m3/emcute_mqttsn.elf donmez@saclay.iot-lab.info:~/
+
+scp gnrc_border_router.elf donmez@saclay.iot-lab.info:~/
+
+iotlab-experiment submit -n riot_a8 -d 60 -l 5,archi=a8:at86rf231+site=saclay
+434055
+
+
+
+make ETHOS_BAUDRATE=500000 DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_border_router clean all
+
+ make DEFAULT_CHANNEL=26 BOARD=iotlab-a8-m3 -C examples/gnrc_networking clean all
